@@ -22,9 +22,11 @@ class LinkedList:
         return "[" + ", ".join(nodes) + "]"
 
     def prepend(self, data):
+        """Add a node to the start of the list"""
         self.head = Node(data=data, next=self.head)
 
     def append(self, data):
+        """Append a node to the end of the list"""
         if not self.head:
             self.head = Node(data=data)
             return
@@ -34,6 +36,7 @@ class LinkedList:
         curr.next = Node(data=data)
 
     def len(self):
+        """Length Function for Linked List"""
         if not self.head:
             return 0
         i = 1
@@ -59,6 +62,7 @@ class LinkedList:
                 unique_values.append(curr.data)
 
     def delete_middle_node(self, node):
+        """Delete a middle node from the center of a list"""
         curr = self.head
         while curr:
             if curr.next and curr.next.data == node:
@@ -85,6 +89,7 @@ def sum_lists(list_first, list_second):
 
 
 def intersections(list_one, list_two):
+    """Return the intersecting nodes of 2 linked lists if they exist"""
     curr_1 = list_one.head
     while curr_1:
         curr_2 = list_two.head
