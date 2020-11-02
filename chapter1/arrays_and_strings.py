@@ -1,5 +1,6 @@
 from chapter1.helpers import *
 
+
 def is_unique(str):
     """Implement an algorithm to determine if a string has all unique characters.
     What if you can't use additional data structures?"""
@@ -28,10 +29,9 @@ def check_permutation(string_1, string_2):
         return False
 
     # Check each character is present
-    for x in string_1:
-        if x not in string_2:
-            return False
-    return True
+    sorted_str_1 = ''.join(sorted(string_1))
+    sorted_str_2 = ''.join(sorted(string_2))
+    return sorted_str_1 == sorted_str_2
 
 
 def urlify(string, length):
@@ -63,9 +63,8 @@ def one_away(string_one, string_two):
     if string_one == string_two:
         # zero edits away so true
         return True
-    #Find how many characters in one string and not the other
-    #needs to be in same order
-
+    # Find how many characters in one string and not the other
+    # needs to be in same order
     found_non_matching = False
     if len(string_one) == len(string_two):
         for x in range(len(string_one)):
