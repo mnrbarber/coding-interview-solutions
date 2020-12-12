@@ -13,6 +13,10 @@ Chapter 2: Linked Lists
   - delete middle node
   - sum lists
   - intersection
+  - return kth to last element
+  - partition
+  - palindrome
+  - loop detection
   
 Chapter 3: Stacks and Queues
 
