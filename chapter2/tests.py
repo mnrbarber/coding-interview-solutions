@@ -80,3 +80,61 @@ class IntersectionTestCase(TestCase):
     def test_non_intersecting_list(self):
         non_intersecting_node = intersections(self.list, self.non_intersecting_list)
         self.assertIsNone(non_intersecting_node)
+
+
+class KthToLastTestCase(TestCase):
+    def setUp(self):
+        self.list = LinkedList()
+        nodes = ["A", "B", "C", "D", "E", "F"]
+        for node in nodes:
+            self.list.append(node)
+        self.k = 3
+        self.kth_node = nodes[len(nodes)-self.k]
+
+    def test_kth_to_last(self):
+        self.assertEqual(self.kth_node, self.list.kth_to_last(self.k).data)
+
+
+class PartitionTestCase(TestCase):
+    def setUp(self):
+        self.list = LinkedList()
+        self.nodes = [3, 5, 8, 5, 10, 2, 1]
+        for node in self.nodes:
+            self.list.append(node)
+        self.partition = 5
+        self.lt_partition = [x for x in self.list.node_list() if x < self.partition]
+        self.gte_partition = [x for x in self.list.node_list() if x >= self.partition]
+
+    def test_partition(self):
+        self.list.partition(self.partition)
+        for x in range(0, 2):
+            # Check all 3 are right
+            self.assertIn(self.list.node_list()[x], self.lt_partition)
+        for x in range(3, 6):
+            # Check last 4 are right
+            self.assertIn(self.list.node_list()[x], self.gte_partition)
+        self.nodes.sort()
+        list_nodes = self.list.node_list()
+        list_nodes.sort()
+        self.assertListEqual(self.nodes, list_nodes)
+
+
+class PalindromeCheckTestCase(TestCase):
+    def setUp(self):
+        self.palindrome_list = LinkedList()
+        self.non_palindrome_list = LinkedList()
+        self.palindrome_nodes = ["A", "B", "C", "D", "C", "B", "A"]
+        self.non_palindrome_nodes = ["A", "B", "C", "D", "E", "F", "G"]
+        for node in self.palindrome_nodes:
+            self.palindrome_list.append(node)
+        for node in self.non_palindrome_nodes:
+            self.non_palindrome_list.append(node)
+
+    def test_palindrome_list(self):
+        self.assertTrue(self.palindrome_list.check_palindrome())
+
+    def test_non_palindrome_list(self):
+        self.assertFalse(self.non_palindrome_list.check_palindrome())
+
+    def test_empty_list(self):
+        self.assertFalse(LinkedList().check_palindrome())
